@@ -57,7 +57,7 @@ app.post('/api/analyze', upload.single('resume'), async (req, res) => {
         }
 
       const response = await ai.models.generateContent({
-    model: 'gemini-3.5-flash',
+    model: 'gemini-3.6-flash',
     contents: `Analyze this resume and return a structured resume analysis.
 
 Evaluate the resume and provide:
