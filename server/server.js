@@ -32,44 +32,10 @@ app.post('/api/analyze', upload.single('resume'), async (req, res) => {
         const file = req.file;
 
         if (!file) {
-            return res.status(400).json({
-                error: 'No file uploaded'
-            });
+            return res.status(400).json({ error: 'No file uploaded' });
         }
 
-        let resumeContent = '';
-
-        if (file.mimetype === 'application/pdf') {
-            const data = await pdfParse(file.buffer);
-            resumeContent = data.text;
-        } else if (
-            file.mimetype ===
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        ) {
-            const data = await mammoth.extractRawText({
-                buffer: file.buffer
-            });
-            resumeContent = data.value;
-        } else {
-            return res.status(400).json({
-                error: 'Only PDF and DOCX files are supported'
-            });
-        }
-
-      const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash-lite',
-    contents: `Analyze this resume and return a structured resume analysis.
-
-Evaluate the resume and provide:
-
-1. ATS score out of 100
-2. Professional summary
-3. Strengths
-4. Weaknesses
-5. Missing keywords
-6. Improvement suggestions
-
-Return the response as valid JSON with these exact keys:
+        const prompt = `Analyze this resume and return only valid JSON:
 
 {
   "atsScore": 0,
@@ -78,18 +44,45 @@ Return the response as valid JSON with these exact keys:
   "weaknesses": ["string"],
   "missingKeywords": ["string"],
   "improvementSuggestions": ["string"]
-}
+}`;
 
-Return only the JSON object. Do not include markdown, explanations, or additional text.
+        let contents;
 
-Resume:
-${resumeContent}`
-});
+        if (file.mimetype === 'application/pdf') {
+            contents = [
+                {
+                    inlineData: {
+                        mimeType: 'application/pdf',
+                        data: file.buffer.toString('base64')
+                    }
+                },
+                { text: prompt }
+            ];
+        } else if (
+            file.mimetype ===
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ) {
+            const data = await mammoth.extractRawText({
+                buffer: file.buffer
+            });
 
-return res.status(200).json({
-    content: resumeContent,
-    analysis:   JSON.parse(response.text)
-});
+            contents = `${prompt}\n\nResume:\n${data.value}`;
+        } else {
+            return res.status(400).json({
+                error: 'Only PDF and DOCX files are supported'
+            });
+        }
+
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash-lite',
+            contents
+        });
+
+        const text = response.text.replace(/```json|```/g, '').trim();
+
+        return res.json({
+            analysis: JSON.parse(text)
+        });
     } catch (error) {
         console.error('Resume analysis error:', error);
 
