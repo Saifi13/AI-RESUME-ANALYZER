@@ -57,7 +57,7 @@ app.post('/api/analyze', upload.single('resume'), async (req, res) => {
         }
 
       const response = await ai.models.generateContent({
-    model: 'gemini-3.6-flash',
+    model: 'gemini-2.5-flash-lite',
     contents: `Analyze this resume and return a structured resume analysis.
 
 Evaluate the resume and provide:
@@ -102,7 +102,7 @@ return res.status(200).json({
 app.get('/api/test-ai', async (req, res) => {
     try {
         const response = await ai.models.generateContent({
-            model: 'gemini-3.6-flash',
+            model: 'gemini-2.5-flash-lite',
             contents: 'Say hello in one sentence.'
         });
 
