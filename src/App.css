@@ -1220,12 +1220,16 @@ body {
     }
 
     .footer-content {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
     .nav {
+        display: none;
+    }
+
+    .header-actions .btn-primary {
         display: none;
     }
 
@@ -1235,6 +1239,19 @@ body {
 
     .mobile-menu {
         display: flex;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .logo-icon {
+        padding: 0.5rem;
+    }
+
+    .logo-icon svg {
+        width: 24px;
+        height: 24px;
     }
 
     .hero-title {
