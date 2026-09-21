@@ -60,24 +60,24 @@ function Hero() {
 
 
     return (
-        <section className="hero">
+        <section className="hero" id="demo">
             <div className="hero-container">
                 <div className="hero-content">
-                    <div className="hero-badge">
+                    <div className="hero-badge fade-in fade-in-delay-1">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         AI-Powered Analysis
                     </div>
-                    <h1 className="hero-title">
+                    <h1 className="hero-title fade-in fade-in-delay-2">
                         Resume Analysis
                     </h1>
-                    <p className="hero-subtitle">
+                    <p className="hero-subtitle fade-in fade-in-delay-2">
                         Upload your resume to get instant AI-powered feedback and optimization suggestions.
                     </p>
-                    
-                    <div 
-                        className={`upload-zone ${isDragging ? 'dragging' : ''} ${file ? 'has-file' : ''}`}
+
+                    <div
+                        className={`upload-zone ${isDragging ? 'dragging' : ''} ${file ? 'has-file' : ''} fade-in fade-in-delay-3`}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}

@@ -23,11 +23,11 @@ function Header() {
                 <nav className="nav">
                     <a href="#features" className="nav-link">Features</a>
                     <a href="#how-it-works" className="nav-link">How It Works</a>
-                    <a href="#pricing" className="nav-link">Pricing</a>
+                    <a href="#demo" className="nav-link">Demo</a>
                 </nav>
 
                 <div className="header-actions">
-                    <button className="btn-primary">Get Started</button>
+                    <button className="btn-primary" onClick={() => document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })}>Get Started</button>
                     <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <line x1="3" y1="12" x2="21" y2="12"/>
@@ -41,8 +41,8 @@ function Header() {
                     <div className="mobile-menu">
                         <a href="#features" className="mobile-nav-link">Features</a>
                         <a href="#how-it-works" className="mobile-nav-link">How It Works</a>
-                        <a href="#pricing" className="mobile-nav-link">Pricing</a>
-                        <button className="mobile-btn-primary">Get Started</button>
+                        <a href="#demo" className="mobile-nav-link">Demo</a>
+                        <button className="mobile-btn-primary" onClick={() => document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })}>Get Started</button>
                     </div>
                 )}
             </div>

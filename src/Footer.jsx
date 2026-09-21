@@ -7,8 +7,9 @@ function Footer() {
                     <p className="footer-tagline">Transform your resume with AI</p>
                 </div>
                 <div className="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Features</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#demo">Demo</a>
                     <a href="#">Privacy</a>
                     <a href="#">Terms</a>
                 </div>
