@@ -1,0 +1,247 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+.analysis-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 48px auto 0;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e5eee9;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(16, 185, 129, 0.08);
+}
+
+.analysis-header {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.analysis-title {
+    margin: 0;
+    color: #172033;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.analysis-card {
+    min-width: 0;
+    padding: 24px;
+    background: #fbfefd;
+    border: 1px solid #e4eee9;
+    border-radius: 16px;
+}
+
+.analysis-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.card-icon-wrapper {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    place-items: center;
+    color: #ffffff;
+    background: #10b981;
+    border-radius: 10px;
+}
+
+.card-icon-wrapper.warning {
+    color: #92400e;
+    background: #fbbf24;
+}
+
+.card-title {
+    margin: 0;
+    color: #172033;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-text,
+.card-list-item {
+    color: #526174;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.card-text {
+    margin: 0;
+}
+
+.card-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.card-list-item::marker {
+    color: #10b981;
+}
+
+.score-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+}
+
+.circular-progress {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.circular-progress svg {
+    width: 100%;
+    height: 100%;
+}
+
+.progress-text {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #172033;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.keywords-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.keyword-tag {
+    padding: 8px 12px;
+    color: #047857;
+    background: #dff8ed;
+    border: 1px solid #a7ebcd;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .analysis-section {
+        padding: 20px;
+        margin-top: 32px;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-card.full-width {
+        grid-column: auto;
+    }
+
+    .analysis-title {
+        font-size: 24px;
+    }
+}
